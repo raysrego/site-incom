@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --incom-navy: #061724;
+  --incom-green: #047857;
+}
+
+body {
+  @apply font-sans text-gray-800 antialiased;
+}
+
+.container {
+  @apply px-4 mx-auto max-w-7xl;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-semibold text-primary-900;
+}
+
+.btn {
+  @apply px-6 py-3 font-medium rounded-md transition-all duration-200;
+}
+
+.btn-primary {
+  @apply bg-primary-700 text-white hover:bg-primary-800;
+}
+
+.btn-secondary {
+  @apply bg-secondary-600 text-white hover:bg-secondary-700;
+}
+
+.btn-outline {
+  @apply border border-primary-700 text-primary-700 hover:bg-primary-50;
+}
+
+.section-title {
+  @apply text-3xl md:text-4xl font-bold text-primary-900 mb-8 relative;
+}
+
+.section-title::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-20 h-1 bg-secondary-600 rounded;
+  bottom: -10px;
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+  }
+  
+  .form-group {
+    @apply mb-4;
+  }
+  
+  .form-label {
+    @apply block mb-2 text-sm font-medium text-gray-700;
+  }
+}
