@@ -1,4 +1,4 @@
-import { createClient } from "npm:@supabase/supabase-js@2.39.7";
+import { createClient } from "@/utils/supabase/server";
 import { SmtpClient } from "npm:@orama/smtp-client@2.1.3";
 
 const corsHeaders = {
