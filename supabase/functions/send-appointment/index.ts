@@ -31,7 +31,7 @@ Deno.serve(async (req) => {
       port: 587,
       auth: {
         user: "agendamentoincom@gmail.com",
-        pass: Deno.env.get("sudkpcyfvmvbykltae") || "",
+        pass: Deno.env.get("Incom@2025") || "",
       },
     });
 
