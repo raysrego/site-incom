@@ -1,6 +1,6 @@
-import { createClient } from "@/utils/supabase/server";
 import { SmtpClient } from "npm:@orama/smtp-client@2.1.3";
 
+// Permissões CORS para aceitar requisições do frontend
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
@@ -36,7 +36,7 @@ Deno.serve(async (req) => {
     });
 
     const emailBody = `
-      Nova Solicitação de Agendamento
+      ✅ Nova Solicitação de Agendamento ✅
 
       Nome: ${appointmentData.fullName}
       Data de Nascimento: ${appointmentData.birthDate}
@@ -65,6 +65,8 @@ Deno.serve(async (req) => {
       }
     );
   } catch (error) {
+    console.error("Erro:", error);
+
     return new Response(
       JSON.stringify({ error: "Erro ao processar agendamento" }),
       {
