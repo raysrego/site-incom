@@ -8,7 +8,7 @@ const BlogPage: React.FC = () => {
       <div className="container">
         <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">Blog Incom</h1>
         <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
-          Fique por dentro das novidades, dicas e informações sobre ortopedia e saúde.
+          Fique por dentro das novidades, dicas e informações sobre ortopedia e saúde - Teste testando GitHub.
         </p>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
