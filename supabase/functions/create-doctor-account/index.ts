@@ -12,7 +12,6 @@ interface DoctorRequest {
   specialty: string;
   email: string;
   password: string;
-  photoUrl?: string;
 }
 
 const jsonResponse = (body: Record<string, unknown>, status = 200) => new Response(JSON.stringify(body), { status, headers: { ...corsHeaders, "Content-Type": "application/json" } });
@@ -43,14 +42,13 @@ Deno.serve(async (req: Request) => {
     const specialty = payload.specialty?.trim();
     const email = payload.email?.trim().toLowerCase();
     const password = payload.password;
-    const photoUrl = payload.photoUrl?.trim() || null;
     if (!name || !crm || !specialty || !email || !password || password.length < 6) return jsonResponse({ error: "Invalid data" }, 400);
 
     const { data: createdUser, error: userError } = await adminClient.auth.admin.createUser({ email, password, email_confirm: true, user_metadata: { full_name: name } });
     if (userError || !createdUser.user) return jsonResponse({ error: "Unable to create account" }, 400);
 
     const { error: profileUpdateError } = await adminClient.from("profiles").update({ full_name: name, role: "doctor" }).eq("id", createdUser.user.id);
-    const { data: doctor, error: doctorError } = await adminClient.from("doctors").insert({ user_id: createdUser.user.id, name, crm, specialty, photo_url: photoUrl }).select("*").maybeSingle();
+    const { data: doctor, error: doctorError } = await adminClient.from("doctors").insert({ user_id: createdUser.user.id, name, crm, specialty }).select("*").maybeSingle();
     if (profileUpdateError || doctorError || !doctor) {
       await adminClient.auth.admin.deleteUser(createdUser.user.id);
       return jsonResponse({ error: "Unable to create doctor" }, 400);
