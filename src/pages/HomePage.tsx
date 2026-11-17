@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Stethoscope, Award, Clock, Check } from 'lucide-react';
 import { doctors } from '../data/doctors';
@@ -6,19 +6,30 @@ import { specialties } from '../data/specialties';
 import { treatments } from '../data/treatments';
 import { insuranceList } from '../data/insurance';
 import { blogPosts } from '../data/blog';
+import { supabase } from '../lib/supabase';
+import type { SiteContent } from '../lib/database.types';
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
+  const [homeContent, setHomeContent] = useState<SiteContent | null>(null);
+
+  useEffect(() => {
+    supabase.from('site_content').select('*').eq('slug', 'home').eq('published', true).maybeSingle().then(({ data, error }) => {
+      if (error) {
+        console.error('home content load failed', error);
+        return;
+      }
+      setHomeContent(data as SiteContent | null);
+    });
+  }, []);
+
   return (
     <div className="pt-16">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary-900 to-primary-800 text-white">
         <div className="container py-20 md:py-28 relative z-10">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Excelência em Ortopedia e Medicina da Dor</h1>
-            <p className="text-lg md:text-xl mb-8 text-gray-100">
-              Tratamentos especializados e tecnologia avançada para sua saúde e bem-estar.
-              Equipe médica altamente qualificada para cuidar de você.
-            </p>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">{homeContent?.title ?? 'Excelência em Ortopedia e Medicina da Dor'}</h1>
+            <p className="text-lg md:text-xl mb-8 text-gray-100">{homeContent?.intro ?? 'Tratamentos especializados e tecnologia avançada para sua saúde e bem-estar. Equipe médica altamente qualificada para cuidar de você.'}</p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/appointment" className="btn bg-secondary-600 hover:bg-secondary-700 text-white flex items-center justify-center">
                 <Calendar size={18} className="mr-2" />

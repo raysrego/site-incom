@@ -1,13 +1,3 @@
-import React from 'react';
-
-const Logo: React.FC<{ className?: string }> = ({ className = 'h-12' }) => {
-  return (
-    <img 
-      src="/src/assets/incom-logo.png" 
-      alt="Incom - Ortopedia e Medicina da Dor" 
-      className={className}
-    />
-  );
-};
+const Logo = ({ className = 'h-12' }: { className?: string }) => <img src="/Logo_Incom_branca_(1).png" alt="Incom - Ortopedia e Medicina da Dor" className={className} />;
 
 export default Logo;

@@ -1,0 +1,13 @@
+{
+  "projectId": "73009888",
+  "functions": {
+    "send-appointment": {
+      "hasChanged": false,
+      "hash": "4c309c441070e74767d8374695a4572e84c9a0afbd571a517b7e7e4d428f5beb"
+    },
+    "create-doctor-account": {
+      "hasChanged": false,
+      "hash": "4886eebe66bbd802a4524e5ed4812b508b718643e8eb21fec76694338afcf7f9"
+    }
+  }
+}

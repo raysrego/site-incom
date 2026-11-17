@@ -1,0 +1,7 @@
+[functions.create-doctor-account]
+verify_jwt = true
+entrypoint = "./functions/create-doctor-account/index.ts"
+
+[functions.send-appointment]
+verify_jwt = false
+entrypoint = "./functions/send-appointment/index.ts"

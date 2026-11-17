@@ -9,6 +9,8 @@
 
 body {
   @apply font-sans text-gray-800 antialiased;
+  background: #f3f7f6;
+  line-height: 1.5;
 }
 
 .container {
@@ -17,6 +19,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   @apply font-semibold text-primary-900;
+  line-height: 1.2;
 }
 
 .btn {
@@ -51,7 +54,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .input-field {
-    @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+    @apply w-full px-4 py-3 border border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-secondary-500 focus:border-transparent transition-shadow;
   }
   
   .form-group {
