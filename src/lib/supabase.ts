@@ -1,4 +1,3 @@
-import { createClient } from '@supabase/supabase-js';
 import { createClient } from "npm:@supabase/supabase-js@2.112.3";
 import { corsHeaders } from "npm:@supabase/supabase-js@^2/cors";
 import type { Database } from './database.types';
